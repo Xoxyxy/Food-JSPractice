@@ -36,6 +36,51 @@ window.addEventListener('DOMContentLoaded', () => {
   hideTabContent()
   showTabContent()
 
+  // Modal
+  const modalBtn = document.querySelectorAll('[data-modalBtn]'),
+    modal = document.querySelector('.modal'),
+    modalClose = modal.querySelector('.modal__close'),
+    body = document.body
+
+  if (modal && modalBtn) {
+    const showModal = () => {
+      modal.classList.add('show', 'fadeModal')
+      body.classList.add('body--fixed')
+    }
+
+    const hideModal = () => {
+      modal.classList.remove('show', 'fadeModal')
+      body.classList.remove('body--fixed')
+    }
+
+    modalBtn.forEach(btn => {
+      btn.addEventListener('click', showModal)
+    })
+
+    modalClose.addEventListener('click', hideModal)
+
+    modal.addEventListener('click', event => {
+      if (event.target === modal) {
+        hideModal()
+      }
+    })
+
+    document.addEventListener('keydown', event => {
+      if (event.code == 'Escape' && modal.classList.contains('show')) {
+        hideModal()
+      }
+    })
+
+    const showModalByScroll = () => {
+      if (window.pageYOffset + document.documentElement.clientHeight >= document.documentElement.scrollHeight - 1) {
+        showModal()
+        window.removeEventListener('scroll', showModalByScroll)
+      }
+    }
+
+    window.addEventListener('scroll', showModalByScroll)
+  }
+
   // Timer
   const deadline = '2022-11-1'
 
