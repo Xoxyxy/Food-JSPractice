@@ -13,7 +13,7 @@ a {
 
 .body--fixed {
   overflow: hidden;
-  padding-right: 17px;
+  margin-right: 17px;
 }
 
 .btn {
@@ -302,6 +302,7 @@ a {
 }
 
 .offer__slider {
+  position: relative;
   width: 650px;
   margin-top: 50px;
   display: flex;
@@ -320,7 +321,13 @@ a {
 .offer__slider-wrapper {
   width: 100%;
   margin-top: 15px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, .25)
+  box-shadow: 0 4px 30px rgba(0, 0, 0, .25);
+  overflow: hidden;
+}
+
+.offer__slider-inner {
+  display: flex;
+  transition: all .5s;
 }
 
 .offer__slider-prev {
@@ -348,6 +355,35 @@ a {
   width: 100%;
   height: 100%;
   object-fit: cover
+}
+
+.carousel-indicators {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 15;
+  display: flex;
+  justify-content: center;
+  margin-right: 15%;
+  margin-left: 15%;
+  list-style: none;
+}
+
+.dot {
+  box-sizing: content-box;
+  flex: 0 1 auto;
+  width: 30px;
+  height: 6px;
+  margin-right: 3px;
+  margin-left: 3px;
+  cursor: pointer;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  opacity: .5;
+  transition: opacity .6s ease;
 }
 
 .calculating {
@@ -665,6 +701,10 @@ a {
   background-color: rgba(0, 0, 0, .5)
 }
 
+.modal--active {
+  display: block;
+}
+
 .modal__dialog {
   max-width: 500px;
   margin: 40px auto
@@ -737,22 +777,23 @@ a {
   from {
     opacity: 0.6;
   }
+
   to {
     opacity: 1;
   }
 }
 
-.fadeModal{
-  animation-name: fadeModal;
+.fastFade {
+  animation-name: fastFade;
   animation-duration: .2s;
 }
 
-@keyframes fadeModal {
+@keyframes fastFade {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
 }
-
